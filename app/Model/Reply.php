@@ -2,11 +2,18 @@
 
 namespace App\Model;
 
+use App\User;
+use App\Model\Question;
+use App\Model\Like;
 use Illuminate\Database\Eloquent\Model;
 
 class Reply extends Model
 {
-    //
+    protected $fillable = [
+        'body',
+        'question_id',
+        'user_id',
+    ];
 
     public function question()
     {

@@ -29,7 +29,7 @@ class Question extends Model
 
     public function replies()
     {
-        return $this->belongsTo(Reply::class);
+        return $this->hasMany(Reply::class);
     }
 
     public function category()
