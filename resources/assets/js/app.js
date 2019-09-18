@@ -15,8 +15,7 @@ Vue.use(Vuetify);
 import User from './Helpers/User';
 
 window.User = User;
-
-console.log(User.loggedIn());
+window.EventBus = new Vue();
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -29,5 +28,5 @@ import router from './Router/router.js';
 Vue.component('AppHome',require('./components/AppHome'));
 const app = new Vue({
     el: '#app',
-    router
+    router,
 });
