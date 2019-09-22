@@ -12,7 +12,7 @@ class ReplyController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('JWT', ['except' => ['index','show']]);
+        $this->middleware('JWT', ['except' => ['index', 'show']]);
     }
 
     /**
@@ -43,8 +43,8 @@ class ReplyController extends Controller
      */
     public function store(Question $question, Request $request)
     {
-        $question->replies()->create($request->all());
-        return response('Created',Response::HTTP_CREATED);
+        $reply = $question->replies()->create($request->all());
+        return response(new ReplyResource($reply), Response::HTTP_CREATED);
     }
 
     /**
@@ -55,7 +55,7 @@ class ReplyController extends Controller
      */
     public function show(Question $question, Reply $reply)
     {
-       return new ReplyResource($reply);
+        return new ReplyResource($reply);
     }
 
     /**
@@ -76,10 +76,10 @@ class ReplyController extends Controller
      * @param  \App\Model\Reply  $reply
      * @return \Illuminate\Http\Response
      */
-    public function update(Question $question,Request $request,Reply $reply)
+    public function update(Question $question, Request $request, Reply $reply)
     {
         $reply->update($request->all());
-        return response('Updated',Response::HTTP_ACCEPTED);
+        return response('Updated', Response::HTTP_ACCEPTED);
     }
 
     /**
@@ -91,6 +91,6 @@ class ReplyController extends Controller
     public function destroy(Question $question, Reply $reply)
     {
         $reply->delete();
-        return response(null,Response::HTTP_NO_CONTENT);
+        return response(null, Response::HTTP_NO_CONTENT);
     }
 }

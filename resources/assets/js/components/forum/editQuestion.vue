@@ -38,7 +38,7 @@ export default {
       axios
         .patch(`/api/question/${this.form.slug}`, this.form)
         .then(response => {
-            this.cancel();
+          this.cancel();
         })
         .catch(error => console.log(error.response.data));
     }

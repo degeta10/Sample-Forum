@@ -22,7 +22,8 @@ class QuestionResource extends JsonResource
             'created_at' => $this->created_at->diffForHumans(),
             'user' => $this->user->name,
             'user_id' => $this->user->id,
-            'replies' => $this->replies()->count(),
+            'replies' => ReplyResource::collection($this->replies),
+            'reply_count' => $this->replies()->count(),
         ];
         return parent::toArray($request);
     }

@@ -12,7 +12,7 @@ class CategoryController extends Controller
 
     public function __construct()
     {
-        $this->middleware('JWT', ['except' => ['index','show']]);
+        $this->middleware('JWT', ['except' => ['index', 'show']]);
     }
 
     /**
@@ -43,11 +43,8 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        Category::create([
-            'name' => $request->name,
-            'slug' => str_slug($request->name),
-        ]);
-        return response('Created',Response::HTTP_CREATED);
+        $category = Category::create($request->all());
+        return response(new CategoryResource($category), Response::HTTP_CREATED);
     }
 
     /**
@@ -85,7 +82,7 @@ class CategoryController extends Controller
             'name' => $request->name,
             'slug' => str_slug($request->name),
         ]);
-        return response('Updated',Response::HTTP_ACCEPTED);
+        return response(new CategoryResource($category), Response::HTTP_ACCEPTED);
     }
 
     /**
@@ -97,6 +94,6 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         $category->delete();
-        return response(null,Response::HTTP_NO_CONTENT);
+        return response(null, Response::HTTP_NO_CONTENT);
     }
 }

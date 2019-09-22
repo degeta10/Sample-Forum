@@ -7,7 +7,7 @@
           <span class="grey--text">Asked by {{data.user}}, {{data.created_at}}</span>
         </div>
         <v-spacer></v-spacer>
-        <v-btn color="teal">{{data.replies}} Replies</v-btn>
+        <v-btn color="teal">{{data.reply_count}} Replies</v-btn>
       </v-card-title>
       <v-card-text v-html="body"></v-card-text>
       <v-card-actions v-if="own">
